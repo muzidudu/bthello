@@ -36,6 +36,8 @@ class Config(object):
     REDIS_HOST = "140.143.208.158"
     # redis 端口
     REDIS_PORT = 6379
+    
+    REDIS_DB = 12
     # redis 密码
     REDIS_PASSWORD = None
     # redis 连接池最大连接量
