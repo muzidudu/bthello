@@ -10,6 +10,7 @@ from .bencode import bencode, bdecode
 from .filetype import get_file_type
 from .database import RedisClients
 from .utils import get_logger
+import json
 
 logger = get_logger("logger_dht_")
 
@@ -158,7 +159,7 @@ def save_metadata(process_id,metadata, h):
     try:
         # 增加判断 必须为媒体类型 and 必须小于 20G and 文件数量小于20个
         if metainfo['file_type'] == 0 AND metainfo['file_size'] < 20971520 :
-            RedisClients.set_keyinfo(str(h),metainfo)
+            RedisClients.set_keyinfo(str(h),json.dumps(metainfo))
             logger.info("save_metadata to redis successful ! {0} ->>>> {1}!".format(process_id,str(h)))
         else:
             logger.info("跳过失败条件")
